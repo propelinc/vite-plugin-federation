@@ -151,7 +151,13 @@ app.mount("#root");
 | [vue3-demo-webpack-esm-var](https://github.com/originjs/vite-plugin-federation/tree/main/packages/examples/vue3-demo-webpack-esm-var)   | `vite`+`esm`                          | `webpack`+`var`                     |
 | [vue3-demo-webpack-systemjs](https://github.com/originjs/vite-plugin-federation/tree/main/packages/examples/vue3-demo-webpack-systemjs) | `vite`+`systemjs`                     | `webpack`+`systemjs`                |
 
-## 特性
+### `filename：string`
+* 作为远程模块的入口文件，非必填，默认为`remoteEntry.js`
+ 
+### `transformFileTypes:string[]`
+* 插件所需要处理的文件类型，绝大多数情况下无需配置，因为默认设置了这些类型`['.js','.ts','.jsx','.tsx','.mjs','.cjs','.vue','.svelte']`，当你自定义了一些文件类型时并且需要`vite-plugin-federation`插件处理时，请把它添加到数组配置中。
+
+### `exposes`
 
 ### 与 Webpack 集成
 
