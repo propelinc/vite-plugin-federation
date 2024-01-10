@@ -1,6 +1,11 @@
 English | [简体中文](./README-zh.md)
 # vite-plugin-federation
 
+## Welcome to the Propel fork of the vite-plugin-federation plugin.
+This fork does two important things:
+1. Forks at version 1.1.8 of the plugin which properly supports sharing
+2. Adds support for a `cssAssetPath` option in the remote config which enables the plugin to properly resolve css assets in the remote module when the build target is `<es2020`
+
 <p align="center">
   <a href="https://bestpractices.coreinfrastructure.org/projects/5752"><img src="https://bestpractices.coreinfrastructure.org/projects/5752/badge"></a>
   <a href="https://github.com/originjs/vite-plugin-federation/actions/workflows/ci.yml"><img src="https://github.com/originjs/vite-plugin-federation/actions/workflows/ci.yml/badge.svg?branch=main" alt="Build Status"></a>

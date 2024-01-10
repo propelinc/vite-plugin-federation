@@ -27,6 +27,7 @@ export function prodExposePlugin(
   options: VitePluginFederationOptions
 ): PluginHooks {
   let moduleMap = ''
+  const cssAssetPath = options.cssAssetPath
   parsedOptions.prodExpose = parseExposeOptions(options)
   // exposes module
   for (const item of parsedOptions.prodExpose) {
@@ -57,12 +58,11 @@ export function prodExposePlugin(
       let moduleMap = {${moduleMap}}
     const seen = {}
     export const ${DYNAMIC_LOADING_CSS} = (cssFilePaths) => {
-      const metaUrl = import.meta.url
-      if (typeof metaUrl == 'undefined') {
-        console.warn('The remote style takes effect only when the build.target option in the vite.config.ts file is higher than that of "es2020".')
-        return
+      if ('${cssAssetPath}' === 'undefined') {
+        throw new Error('Module Federation cssAssetPath option is not defined and remote styles cannnot be applied with out it.')
       }
-      const curUrl = metaUrl.substring(0, metaUrl.lastIndexOf('${options.filename}'))
+
+      const curUrl = '${cssAssetPath}'
 
       cssFilePaths.forEach(cssFilePath => {
         const href = curUrl + cssFilePath
