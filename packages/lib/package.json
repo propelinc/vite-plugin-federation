@@ -1,5 +1,5 @@
 {
-  "name": "@originjs/vite-plugin-federation",
+  "name": "vite-plugin-federation",
   "version": "1.1.8",
   "description": "A Vite plugin which support Module Federation.",
   "main": "dist/index.js",
