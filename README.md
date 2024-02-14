@@ -1,5 +1,22 @@
+# propelinc/vite-plugin-federation
+
+Welcome to the Propel Fork of the vite-plugin-federation plugin. The standard README is copied below but a few notes on development.
+
+We do not publish packages to npm. We use this fork by referencing the git repo at a commit hash in `package.json` and referencing the `dist` folder in the repo.
+As such, **you should run `npm run build` and commit the changes to the `dist ` folder.**
+
+Example development workflow:
+1. Branch off of the `propel` branch -- `main` is reserved for pulling upstream code from the original repo if needed
+2. Make your changes, run a build and commit the `dist` folder
+3. Push your changes to a branch
+3. Test by installing your branch changes using the commit hash at the head of your dev branch
+4. Merge your branch to `propel` when ready
+
+Original README continued below
+------
+
 English | [简体中文](./README-zh.md)
-# vite-plugin-federation
+### vite-plugin-federation
 
 <p align="center">
   <a href="https://bestpractices.coreinfrastructure.org/projects/5752"><img src="https://bestpractices.coreinfrastructure.org/projects/5752/badge"></a>
