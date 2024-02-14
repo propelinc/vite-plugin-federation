@@ -76,6 +76,12 @@ declare interface VitePluginFederationOptions {
    * Current operating mode
    */
   mode?: string
+
+  /**
+   * The base url and asset location for
+   * the Remote's CSS assets
+   */
+  cssAssetPath?: string
 }
 
 type Exposes = (string | ExposesObject)[] | ExposesObject

@@ -1531,7 +1531,7 @@ export {__federation_method_ensure, __federation_method_getRemote , __federation
                     return code.replace(getModuleMarker('moduleMap', 'var'), `{${moduleMapCode}}`);
                 }
                 if (id === '\0virtual:__federation_lib_semver') {
-                    const federationId = (_b = (await this.resolve('@originjs/vite-plugin-federation'))) === null || _b === void 0 ? void 0 : _b.id;
+                    const federationId = (_b = (await this.resolve('vite-plugin-federation/packages/lib'))) === null || _b === void 0 ? void 0 : _b.id;
                     const satisfyId = `${path.dirname(federationId)}/satisfy.js`;
                     return fs.readFileSync(satisfyId, { encoding: 'utf-8' });
                 }
@@ -2102,6 +2102,7 @@ function prodSharedPlugin(options) {
 
 function prodExposePlugin(options) {
     let moduleMap = '';
+    const cssAssetPath = options.cssAssetPath;
     parsedOptions.prodExpose = parseExposeOptions(options);
     // exposes module
     for (const item of parsedOptions.prodExpose) {
@@ -2125,12 +2126,11 @@ function prodExposePlugin(options) {
       let moduleMap = {${moduleMap}}
     const seen = {}
     export const ${DYNAMIC_LOADING_CSS} = (cssFilePaths) => {
-      const metaUrl = import.meta.url
-      if (typeof metaUrl == 'undefined') {
-        console.warn('The remote style takes effect only when the build.target option in the vite.config.ts file is higher than that of "es2020".')
-        return
+      if ('${cssAssetPath}' === 'undefined') {
+        throw new Error('Module Federation cssAssetPath option is not defined and remote styles cannnot be applied with out it.')
       }
-      const curUrl = metaUrl.substring(0, metaUrl.lastIndexOf('${options.filename}'))
+
+      const curUrl = '${cssAssetPath}'
 
       cssFilePaths.forEach(cssFilePath => {
         const href = curUrl + cssFilePath

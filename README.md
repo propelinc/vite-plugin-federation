@@ -1,6 +1,14 @@
 # propelinc/vite-plugin-federation
 
-Welcome to the Propel Fork of the vite-plugin-federation plugin. The standard README is copied below but a few notes on development.
+Welcome to the Propel Fork of the vite-plugin-federation plugin. The orgiinal README is copied below.
+
+### Why does this fork exist?
+
+This fork does two important things:
+1. Forks at version 1.1.8 of the plugin which properly supports sharing the Vue instace between Microfrontends
+2. Adds support for a `cssAssetPath` option in the remote config which enables the plugin to properly resolve css assets in the remote module when the build target is `<es2020`
+
+### Developing against this fork
 
 We do not publish packages to npm. We use this fork by referencing the git repo at a commit hash in `package.json` and referencing the `dist` folder in the repo.
 As such, **you should run `npm run build` and commit the changes to the `dist ` folder.**

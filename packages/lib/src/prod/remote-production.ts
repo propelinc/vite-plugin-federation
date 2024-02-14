@@ -172,7 +172,7 @@ export {__federation_method_ensure, __federation_method_getRemote , __federation
 
         if (id === '\0virtual:__federation_lib_semver') {
           const federationId = (
-            await this.resolve('@originjs/vite-plugin-federation')
+            await this.resolve('vite-plugin-federation/packages/lib')
           )?.id
           const satisfyId = `${dirname(federationId!)}/satisfy.js`
           return readFileSync(satisfyId, { encoding: 'utf-8' })
