@@ -1255,11 +1255,13 @@ function parseExposeOptions(options) {
     return parseOptions(options.exposes, (item) => {
         return {
             import: item,
-            name: undefined
+            name: undefined,
+            dontAppendStylesToHead: false
         };
     }, (item) => ({
         import: Array.isArray(item.import) ? item.import : [item.import],
-        name: item.name || undefined
+        name: item.name || undefined,
+        dontAppendStylesToHead: item.dontAppendStylesToHead || false
     }));
 }
 function parseRemoteOptions(options) {
@@ -2088,7 +2090,7 @@ function prodExposePlugin(options) {
         EXPOSES_MAP.set(item[0], exposeFilepath);
         EXPOSES_KEY_MAP.set(item[0], `__federation_expose_${removeNonRegLetter(item[0], NAME_CHAR_REG)}`);
         moduleMap += `\n"${item[0]}":()=>{
-      ${DYNAMIC_LOADING_CSS}('${DYNAMIC_LOADING_CSS_PREFIX}${exposeFilepath}')
+      ${DYNAMIC_LOADING_CSS}('${DYNAMIC_LOADING_CSS_PREFIX}${exposeFilepath}', ${item[1].dontAppendStylesToHead}, '${item[0]}')
       return __federation_import('\${__federation_expose_${item[0]}}').then(module =>Object.keys(module).every(item => exportSet.has(item)) ? () => module.default : () => module)},`;
     }
     let remoteEntryChunk;
@@ -2102,7 +2104,7 @@ function prodExposePlugin(options) {
       const exportSet = new Set(['Module', '__esModule', 'default', '_export_sfc']);
       let moduleMap = {${moduleMap}}
     const seen = {}
-    export const ${DYNAMIC_LOADING_CSS} = (cssFilePaths) => {
+    export const ${DYNAMIC_LOADING_CSS} = (cssFilePaths, dontAppendStylesToHead, exposeItemName) => {
       if ('${cssAssetPath}' === 'undefined') {
         throw new Error('Module Federation cssAssetPath option is not defined and remote styles cannnot be applied with out it.')
       }
@@ -2113,9 +2115,15 @@ function prodExposePlugin(options) {
         const href = curUrl + cssFilePath
         if (href in seen) return
         seen[href] = true
-        const element = document.head.appendChild(document.createElement('link'))
-        element.href = href
-        element.rel = 'stylesheet'
+        if (dontAppendStylesToHead) {
+          const key = 'css__${options.name}__' + exposeItemName;
+          if (window[key] == null) window[key] = []
+          window[key].push(href);
+        } else {
+          const element = document.head.appendChild(document.createElement('link'))
+          element.href = href
+          element.rel = 'stylesheet'
+        }
       })
     };
     async function __federation_import(name) {
