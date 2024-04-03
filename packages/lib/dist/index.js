@@ -1279,7 +1279,7 @@ function parseExposeOptions(options) {
             dontAppendStylesToHead: false
         };
     }, (item) => ({
-        import: item,
+        import: Array.isArray(item.import) ? item.import : [item.import],
         name: item.name || undefined,
         dontAppendStylesToHead: item.dontAppendStylesToHead || false
     }));
