@@ -63,14 +63,12 @@ export function parseExposeOptions(
     (item) => {
       return {
         import: item,
-        name: undefined,
-        dontAppendStylesToHead: false
+        name: undefined
       }
     },
     (item) => ({
       import: Array.isArray(item.import) ? item.import : [item.import],
-      name: item.name || undefined,
-      dontAppendStylesToHead: item.dontAppendStylesToHead || false
+      name: item.name || undefined
     })
   )
 }

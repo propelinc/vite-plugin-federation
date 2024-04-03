@@ -27,13 +27,11 @@ test('get moduleMarker', () => {
 test('parse exposes options', () => {
   const normalizeSimple = (item) => ({
     import: item,
-    name: undefined,
-    dontAppendStylesToHead: false
+    name: undefined
   })
   const normalizeOptions = (item) => ({
     import: item.import,
-    name: item.name || undefined,
-    dontAppendStylesToHead: item.dontAppendStylesToHead || false
+    name: item.name || undefined
   })
   // string[]
   let exposes: (string | ExposesObject)[] | ExposesObject = [
@@ -67,8 +65,7 @@ test('parse exposes options', () => {
   exposes = {
     './Content': {
       import: './src/components/Content.vue',
-      name: 'content',
-      dontAppendStylesToHead: true
+      name: 'content'
     },
     './Button': {
       import: './src/components/Button.js',
@@ -78,19 +75,11 @@ test('parse exposes options', () => {
   ret = parseOptions(exposes, normalizeSimple, normalizeOptions)
   expect(ret[0]).toMatchObject([
     './Content',
-    {
-      import: './src/components/Content.vue',
-      name: 'content',
-      dontAppendStylesToHead: true
-    }
+    { import: './src/components/Content.vue', name: 'content' }
   ])
   expect(ret[1]).toMatchObject([
     './Button',
-    {
-      import: './src/components/Button.js',
-      name: 'button',
-      dontAppendStylesToHead: false
-    }
+    { import: './src/components/Button.js', name: 'button' }
   ])
   // console.log(JSON.stringify(ret))
 
