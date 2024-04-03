@@ -2114,7 +2114,7 @@ function prodExposePlugin(options) {
         if (href in seen) return
         seen[href] = true
         // DONT APPEND STYLES TO HEAD
-        const key = 'css__${options.name}__' + exposeItemName;
+        const key = 'css__${options.name}';
         if (window[key] == null) window[key] = []
         window[key].push(href);
       })
