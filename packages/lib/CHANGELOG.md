@@ -1,3 +1,97 @@
+## [1.4.1](https://github.com/originjs/vite-plugin-federation/compare/v1.4.0...v1.4.1) (2025-04-12)
+
+### Bug Fixes
+* Fixes #687 (#688)([#687](https://github.com/originjs/vite-plugin-federation/issues/687))([6287bae](https://github.com/originjs/vite-plugin-federation/commit/6287bae6f84dba182e024493e00c2491820b1148))
+
+
+
+# [1.4.0](https://github.com/originjs/vite-plugin-federation/compare/v1.3.9...v1.4.0) (2025-03-15)
+
+
+### Bug Fixes
+
+* bug on expose-production.ts ([#680](https://github.com/originjs/vite-plugin-federation/issues/680)) ([be78ec0](https://github.com/originjs/vite-plugin-federation/commit/be78ec0cda8e9c1d5fdcf3d53561805af4390e42))
+* **dev:** Append styles to head even for duplicates, fix key construction ([#683](https://github.com/originjs/vite-plugin-federation/issues/683)) ([8381233](https://github.com/originjs/vite-plugin-federation/commit/83812338a0de7ae5418b57e897818a64d65b74da))
+* multiple version of a package loaded causes problem ([#684](https://github.com/originjs/vite-plugin-federation/issues/684)) ([ff0527f](https://github.com/originjs/vite-plugin-federation/commit/ff0527fa2e3784d211f9a473c671acbb3017edd3))
+
+
+
+## [1.3.9](https://github.com/originjs/vite-plugin-federation/compare/v1.3.8...v1.3.9) (2025-01-18)
+
+
+### Bug Fixes
+
+* CSS path in expose-production produce double slashes ([8df65ef](https://github.com/originjs/vite-plugin-federation/commit/8df65ef4d31dc7f18027ed8d9101f3a7f2bfefb2))
+* **css-file-paths-formatting:** ensure CSS paths include hostname for remote module styles ([#667](https://github.com/originjs/vite-plugin-federation/issues/667)) ([e39a86f](https://github.com/originjs/vite-plugin-federation/commit/e39a86f578c2b71dee051f86f5fd4bd3fb76e960))
+* Remove unnecessary console log in prodExposePlugin ([7baff37](https://github.com/originjs/vite-plugin-federation/commit/7baff37fbb2e8e59be508eb635cc71c8c4181980))
+* Updated the CSS file path generation logic in prodExposePlugin to correctly handle the base URL. ([ccec627](https://github.com/originjs/vite-plugin-federation/commit/ccec627da3cdf408bb031cf00b1ac31bb77671be))
+
+
+
+## [1.3.8](https://github.com/originjs/vite-plugin-federation/compare/v1.3.7...v1.3.8) (2025-01-11)
+
+
+### Bug Fixes
+
+* Add base and assetsDir to dynamicLoadingCss to support loading style file addresses using the base configuration. ([766b521](https://github.com/originjs/vite-plugin-federation/commit/766b521ee56fd2ba15f234c5f5c0aa6336fa518f))
+* update remoteEntryChunk code to handle base path correctly when Vite config is present ([538e258](https://github.com/originjs/vite-plugin-federation/commit/538e258a891e8cf640ae503feba9205fab53c1c6))
+
+
+
+## [1.3.7](https://github.com/originjs/vite-plugin-federation/compare/v1.3.6...v1.3.7) (2025-01-01)
+
+
+### Bug Fixes
+
+* The remoteEntryChunk should use the base path from the Vite config. ([352f20e](https://github.com/originjs/vite-plugin-federation/commit/352f20e0d4b6f10ef8a86e173221b030bbd18f99))
+* preserve signature of shared librairies([0258207](https://github.com/originjs/vite-plugin-federation/commit/0258207d814020673af2210bcccf650d18947fe3))
+
+
+
+### Features
+
+* shared deps module preload ([cbbf76e](https://github.com/originjs/vite-plugin-federation/commit/cbbf76e771512120b4512609ce1e7c2faec64fcf))
+
+
+
+## [1.3.6](https://github.com/originjs/vite-plugin-federation/compare/v1.3.5...v1.3.6) (2024-09-15)
+
+
+### Bug Fixes
+
+* removeNonRegLetter for chunk filename ([#621](https://github.com/originjs/vite-plugin-federation/issues/621)) ([7e822ff](https://github.com/originjs/vite-plugin-federation/commit/7e822ff7dcee15499a5f065e190fd73f41a9764e))
+
+
+### Features
+
+* adds a workaround for a safari bug when loading modules async ([#617](https://github.com/originjs/vite-plugin-federation/issues/617)) ([bbd1d89](https://github.com/originjs/vite-plugin-federation/commit/bbd1d89de65e36698bc0e1027a76587e4989d6cd))
+
+
+
+## [1.3.5](https://github.com/originjs/vite-plugin-federation/compare/v1.3.4...v1.3.5) (2024-02-18)
+
+
+### Bug Fixes
+
+* check for regex in external ([#573](https://github.com/originjs/vite-plugin-federation/issues/573)) ([7e5be49](https://github.com/originjs/vite-plugin-federation/commit/7e5be49057be534982f1819f80e5ea9c78305498))
+* sharedFilePathReg ([#567](https://github.com/originjs/vite-plugin-federation/issues/567)) ([0a09bf0](https://github.com/originjs/vite-plugin-federation/commit/0a09bf0ead5e763a8c32a63d554c2bdf5f3a322c))
+
+
+
+## [1.3.4](https://github.com/originjs/vite-plugin-federation/compare/v1.3.3...v1.3.4) (2024-01-03)
+
+
+### Bug Fixes
+
+* global shared modules into wrapper ([#553](https://github.com/originjs/vite-plugin-federation/issues/553)) ([dade815](https://github.com/originjs/vite-plugin-federation/commit/dade815d752eb863d5c276e4c5c5f6604954648a)), closes [#543](https://github.com/originjs/vite-plugin-federation/issues/543)
+
+
+### Features
+
+* dev: add option for adding styles to global object instead of <head> element (for using in Shadow DOM) ([#548](https://github.com/originjs/vite-plugin-federation/issues/548)) ([76e847a](https://github.com/originjs/vite-plugin-federation/commit/76e847a9af25f98a3c51afd3c8cf039f6ec5ac23))
+
+
+
 ## [1.3.3](https://github.com/originjs/vite-plugin-federation/compare/v1.3.2...v1.3.3) (2023-11-20)
 
 

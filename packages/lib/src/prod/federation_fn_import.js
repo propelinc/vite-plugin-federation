@@ -1,5 +1,7 @@
 import { satisfy } from '__federation_fn_satisfy'
 
+const currentImports = {}
+
 // eslint-disable-next-line no-undef
 const moduleMap = __rf_var__moduleMap
 const moduleCache = Object.create(null)
@@ -10,17 +12,21 @@ async function importShared(name, shareScope = 'default') {
 }
 // eslint-disable-next-line
 async function __federation_import(name) {
-  return import(name)
+  currentImports[name] ??= import(name)
+  return currentImports[name]
 }
 async function getSharedFromRuntime(name, shareScope) {
   let module = null
   if (globalThis?.__federation_shared__?.[shareScope]?.[name]) {
     const versionObj = globalThis.__federation_shared__[shareScope][name]
-    const versionKey = Object.keys(versionObj)[0]
-    const versionValue = Object.values(versionObj)[0]
-    if (moduleMap[name]?.requiredVersion) {
-      // judge version satisfy
-      if (satisfy(versionKey, moduleMap[name].requiredVersion)) {
+    const requiredVersion = moduleMap[name]?.requiredVersion
+    const hasRequiredVersion = !!requiredVersion
+    if (hasRequiredVersion) {
+      const versionKey = Object.keys(versionObj).find((version) =>
+        satisfy(version, requiredVersion)
+      )
+      if (versionKey) {
+        const versionValue = versionObj[versionKey]
         module = await (await versionValue.get())()
       } else {
         console.log(
@@ -28,6 +34,8 @@ async function getSharedFromRuntime(name, shareScope) {
         )
       }
     } else {
+      const versionKey = Object.keys(versionObj)[0]
+      const versionValue = versionObj[versionKey]
       module = await (await versionValue.get())()
     }
   }
